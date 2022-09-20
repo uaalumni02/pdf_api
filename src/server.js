@@ -1,17 +1,23 @@
-import express from "express";
-import "dotenv/config";
-import cors from "cors";
-import router from "../routes";
+import express from 'express';
+import 'dotenv/config'
+import cors from 'cors';
 
 const app = express();
 const { log, error } = console;
 
 const port = process.env.PORT || 3000;
 
+const router = express.Router();
+
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(router);
+app.use(express.urlencoded({ extended: true }))
 
-app.listen(port, () => log("server is running"));
+import certificateRoutes from "./routes/certificates.route";
+
+router.use("/certificate", certificateRoutes);
+
+app.use("/api", router);
+
+app.listen(port, () => log('server is running'));
 export default app;

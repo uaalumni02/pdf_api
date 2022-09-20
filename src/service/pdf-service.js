@@ -2,7 +2,6 @@ const PDFDocument = require('pdfkit');
 
 function buildPDF(dataCallback, endCallback) {
   const doc = new PDFDocument({ bufferPages: true, font: 'Courier' });
-
   doc.on('data', dataCallback);
   doc.on('end', endCallback);
 
