@@ -1,0 +1,28 @@
+class Db {
+  static async addAwardType(model, data) {
+    try {
+      const addAward = await model({ ...data });
+      return addAward.save();
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async getAllAwardTypes(model) {
+    try {
+      const allAwardTypes = await model.find({});
+      return allAwardTypes;
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async getAwardTypeById(model, id) {
+    try {
+      const awardType = await model.findById(id);
+      return awardType;
+    } catch (error) {
+      throw error;
+    }
+  }
+}
+
+export default Db;

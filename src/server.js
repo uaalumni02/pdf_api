@@ -22,8 +22,10 @@ mongoose.connect(DB_URL, (err) => {
 });
 
 import certificateRoutes from "./routes/certificates.route";
+import awardRoutes from './routes/award.route';
 
 router.use("/certificate", certificateRoutes);
+router.use("/award", awardRoutes);
 
 app.use("/api", router);
 
