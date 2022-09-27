@@ -31,6 +31,17 @@ class Db {
       throw error;
     }
   }
+  static async getCertificateById(model, id) {
+    try {
+      const certificateById = await model
+        .findById(id)
+        .populate("awardType")
+        .exec();
+      return certificateById;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Db;

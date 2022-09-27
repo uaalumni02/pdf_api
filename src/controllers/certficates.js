@@ -1,5 +1,5 @@
 const pdfService = require("../service/pdf-service");
-import Certficate from "../models/certificate";
+import Certificate from "../models/certificate";
 import Db from "../db/db";
 
 import * as Response from "../helpers/response/response";
@@ -10,7 +10,6 @@ import moment from "moment";
 class CertificateController {
   static async addCertficiate(req, res) {
     const certificateData = { ...req.body };
-    console.log(certificateData)
     const certificateTimestamp = moment(
       certificateData.certificateDate,
       "YYYY-MM-DD"
@@ -20,17 +19,24 @@ class CertificateController {
       const result = await validator.validateAsync(certificateData);
       if (!result.error) {
         const certificateInfo = await Db.addCertificate(
-          Certficate,
+          Certificate,
           certificateData
         );
         return Response.responseOkCreated(res, certificateInfo);
       }
     } catch (error) {
-      console.log(error)
       return Response.responseServerError(res);
     }
   }
-
+  static async getCertificateById(req, res) {
+    const { id } = req.params;
+    try {
+      const certificateById = await Db.getCertificateById(Certificate, id);
+      return Response.responseOk(res, certificateById);
+    } catch (error) {
+      return Response.responseNotFound(res);
+    }
+  }
   static async getCertificate(req, res, next) {
     try {
       const stream = res.writeHead(200, {

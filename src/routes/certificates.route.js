@@ -8,4 +8,8 @@ router
   .get(certificateController.getCertificate)
   .post(certificateController.addCertficiate);
 
+  router
+  .route("/:id")
+  .get(certificateController.getCertificateById)
+
 export default router;
