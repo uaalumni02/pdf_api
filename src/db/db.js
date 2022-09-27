@@ -23,6 +23,14 @@ class Db {
       throw error;
     }
   }
+  static async addCertificate(model, data) {
+    try {
+      const addCertficiate = await model({ ...data });
+      return addCertficiate.save();
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Db;
