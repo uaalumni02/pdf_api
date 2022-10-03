@@ -1,7 +1,8 @@
 const PDFDocument = require("pdfkit");
+import moment from "moment";
 
 function buildPDF(dataCallback, endCallback, text) {
-  console.log(text);
+  const time = moment.unix(text.certificateDate).format("MM-DD-YYYY");
   const doc = new PDFDocument({
     bufferPages: true,
     font: "Courier",
@@ -33,7 +34,7 @@ function buildPDF(dataCallback, endCallback, text) {
 
   jumpLine(doc, 5);
 
-  doc.fontSize(16).fill("#021c27").text("CERTIFICATE OF ACHIEVEMENT", {
+  doc.fontSize(20).fill("#021c27").text("CERTIFICATE OF ACHIEVEMENT", {
     align: "center",
   });
 
@@ -61,6 +62,12 @@ function buildPDF(dataCallback, endCallback, text) {
   jumpLine(doc, 2);
 
   doc.fontSize(14).fill("#021c27").text(`${text.awardType.awardType}`, {
+    align: "center",
+  });
+
+  jumpLine(doc, 2);
+
+  doc.fontSize(14).fill("#021c27").text(`${time}`, {
     align: "center",
   });
 
