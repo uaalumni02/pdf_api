@@ -28,22 +28,11 @@ class CertificateController {
       return Response.responseServerError(res);
     }
   }
-  //still need to look at response
   static async getCertificateById(req, res) {
     const { id } = req.params;
     try {
       const certificateById = await Db.getCertificateById(Certificate, id);
-      const stream = res.writeHead(200, {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment;filename=certificate.pdf`,
-      });
-      pdfService.buildPDF(
-        (chunk) => stream.write(chunk),
-        () => stream.end(),
-        certificateById
-      );
-
-      // return Response.responseOk(res, certificateById);
+      return Response.responseOk(res, certificateById);
     } catch (error) {
       return Response.responseNotFound(res);
     }
