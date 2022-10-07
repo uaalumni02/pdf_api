@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": " NODE_ENV=test mocha --require @babel/register ./tests/**/*.js --exit",
     "start:dev": "nodemon --exec babel-node src/server",
     "build": "babel src -d build",
     "start": "node build/server.js"
@@ -27,7 +27,13 @@
     "pdfkit": "^0.13.0"
   },
   "devDependencies": {
+    "casual": "^1.6.2",
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.2"
+    "dotenv": "^16.0.2",
+    "mocha": "^10.0.0",
+    "should": "^13.2.3",
+    "supertest": "^6.3.0"
   }
 }

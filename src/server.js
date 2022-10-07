@@ -15,14 +15,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const DB_URL = process.env.MONGO_URL;
+const TEST_DB_URL = process.env.MONGO_TEST_URL;
 
-mongoose.connect(DB_URL, (err) => {
-  if (err) return console.log("Unable to Connect to MongoDB");
-  return console.log("Connection Successful");
-});
+if (process.env.NODE_ENV == "test") {
+  mongoose.connect(TEST_DB_URL, { useNewUrlParser: true }, (err) => {
+    if (err) return log("Unable to Connect to MongoDB");
+    return log("Connection Successful to test DB");
+  });
+} else {
+  mongoose.connect(DB_URL, { useNewUrlParser: true }, (err) => {
+    if (err) return log("Unable to Connect to MongoDB");
+    return log("Connection Successful");
+  });
+}
 
 import certificateRoutes from "./routes/certificates.route";
-import awardRoutes from './routes/award.route';
+import awardRoutes from "./routes/award.route";
 import generateCertificateRoutes from "./routes/generateCertificate.routes";
 
 router.use("/certificate", certificateRoutes);
