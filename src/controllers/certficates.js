@@ -37,6 +37,14 @@ class CertificateController {
       return Response.responseNotFound(res);
     }
   }
+  static async allCertificates(req, res) {
+    try {
+      const allCertificates = await Db.getAllCertificates(Certificate);
+      return Response.responseOk(res, allCertificates);
+    } catch (error) {
+      return Response.responseNotFound(res);
+    }
+  }
 }
 
 export default CertificateController;

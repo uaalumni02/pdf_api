@@ -42,6 +42,16 @@ class Db {
       throw error;
     }
   }
+  static async getAllCertificates(model) {
+    try {
+      const allCertificates = await model.find({})
+      .populate("awardType")
+      .exec();
+      return allCertificates;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default Db;

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router
   .route("/")
-  // .get(certificateController.getCertificate)
+  .get(certificateController.allCertificates)
   .post(certificateController.addCertficiate);
 
   router
