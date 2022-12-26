@@ -49,7 +49,7 @@ function buildPDF(dataCallback, endCallback, text) {
   doc
     .fontSize(24)
     .fill("#021c27")
-    .text(`${text.firstName + " " + text.lastName}`, {
+    .text(`${text.Name}`, {
       align: "center",
     });
 

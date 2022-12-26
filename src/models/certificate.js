@@ -6,15 +6,10 @@ const certificateInformationSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  firstName: {
+  Name: {
     type: String,
     min: 2,
-    max: 15,
-  },
-  lastName: {
-    type: String,
-    min: 2,
-    max: 15,
+    max: 30,
   },
   awardType: {
     type: Schema.Types.ObjectId,
