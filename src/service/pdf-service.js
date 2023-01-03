@@ -46,12 +46,9 @@ function buildPDF(dataCallback, endCallback, text) {
 
   jumpLine(doc, 2);
 
-  doc
-    .fontSize(24)
-    .fill("#021c27")
-    .text(`${text.Name}`, {
-      align: "center",
-    });
+  doc.fontSize(24).fill("#021c27").text(`${text.Name}`, {
+    align: "center",
+  });
 
   jumpLine(doc, 1);
 
@@ -69,6 +66,25 @@ function buildPDF(dataCallback, endCallback, text) {
 
   doc.fontSize(14).fill("#021c27").text(`${time}`, {
     align: "center",
+  });
+
+  jumpLine(doc, 7);
+
+  doc.fontSize(14).fill("#021c27").text(`${text._id.toString()}`, {
+    align: "right",
+  });
+  doc.fontSize(14).fill("#021c27").text("Verfiication Code", {
+    align: "right",
+  });
+
+  doc.moveUp(2);
+
+  doc.fontSize(14).fill("#021c27").text("DeMeco Bell", {
+    align: "left",
+  });
+
+  doc.fontSize(14).fill("#021c27").text("Director", {
+    align: "left",
   });
 
   doc.end();
